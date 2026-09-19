@@ -1,13 +1,13 @@
 #include <iostream>
 using namespace std;
-//»·ĞÎ¶ÓÁĞ--»ùÓÚÊı×éÊµÏÖ
+//ç¯å½¢é˜Ÿåˆ—--åŸºäºæ•°ç»„å®ç°
 class circle_queue{
     private:
-    int *que;//Ö¸Ïò¶ÑÄÚ´æ
-    int cap;//¿Õ¼äÈİÁ¿
-    int front_;//¶ÓÍ·
-    int rear;//¶ÓÎ²
-    int cnt;//¶ÓÁĞÔªËØ¸öÊı
+    int *que;//æŒ‡å‘å †å†…å­˜
+    int cap;//ç©ºé—´å®¹é‡
+    int front_;//é˜Ÿå¤´
+    int rear;//é˜Ÿå°¾
+    int cnt;//é˜Ÿåˆ—å…ƒç´ ä¸ªæ•°
     public:
     circle_queue(int size=10){
         cap=size;
@@ -20,7 +20,7 @@ class circle_queue{
         delete[]que;
         que=nullptr;
     }
-    void push(int val=0){//Èë¶Ó
+    void push(int val=0){//å…¥é˜Ÿ
         if((rear+1)%cap==front_){
             expand(2*cap);
         }
@@ -28,43 +28,43 @@ class circle_queue{
         rear=(rear+1)%cap;
         cnt++;
     }
-    void pop(){//³ö¶Ó
+    void pop(){//å‡ºé˜Ÿ
         if(front_==rear){
-            throw "¶ÓÁĞÎª¿Õ";
+            throw "é˜Ÿåˆ—ä¸ºç©º";
         }
         front_=(front_+1)%cap;
         cnt--;
     }
-    int front()const{//»ñÈ¡¶ÓÍ·ÔªËØ
+    int front()const{//è·å–é˜Ÿå¤´å…ƒç´ 
         if(front_==rear)throw;
         return que[front_];
     }
-    int back()const{//»ñÈ¡¶ÓÎ²ÔªËØ
+    int back()const{//è·å–é˜Ÿå°¾å…ƒç´ 
         if(front_==rear)throw;
-        return que[(rear-1+cap)%cap];//Èô¶ÓÎ²ÔªËØÇ¡ºÃÊÇÊı×éµÄ×îºóÒ»¸ö£¬¼°rearÊÇ0£¬Ôò·µ»Øend,·ñÔò·µ»Ørear-1´¦ÔªËØ
+        return que[(rear-1+cap)%cap];//è‹¥é˜Ÿå°¾å…ƒç´ æ°å¥½æ˜¯æ•°ç»„çš„æœ€åä¸€ä¸ªï¼ŒåŠrearæ˜¯0ï¼Œåˆ™è¿”å›end,å¦åˆ™è¿”å›rear-1å¤„å…ƒç´ 
     }
     bool empty(){
         return front_==rear;
     }
-    int size(){//¶ÓÁĞÔªËØ¸öÊı O(1)
-        //Í¨¹ıÌí¼Ó³ÉÔ±±äÁ¿cnt
+    int size(){//é˜Ÿåˆ—å…ƒç´ ä¸ªæ•° O(1)
+        //é€šè¿‡æ·»åŠ æˆå‘˜å˜é‡cnt
         return cnt;
     }
-    int count(){//Í³¼Ç¶ÓÁĞÔªËØ¸öÊı O(n)
-        //Ã»ÓĞ³ÉÔ±±äÁ¿cnt,±éÀúÊı×éÊµÏÖÍ³¼Æ¸öÊı
+    int count(){//ç»Ÿè®°é˜Ÿåˆ—å…ƒç´ ä¸ªæ•° O(n)
+        //æ²¡æœ‰æˆå‘˜å˜é‡cnt,éå†æ•°ç»„å®ç°ç»Ÿè®¡ä¸ªæ•°
         int cnt_=0;
         for(int i=front_;i!=rear;i=(i+1)%cap){
             cnt_++;
         }
         return cnt_;
     }
-    void clear(){//Çå¿Õ¶ÓÁĞ
+    void clear(){//æ¸…ç©ºé˜Ÿåˆ—
         while(!empty()){
             pop();
         }
     }
     private:
-    void expand(int size){//À©Èİ
+    void expand(int size){//æ‰©å®¹
         int *p=new int[size];
         int i,j=front_;
         for(i=0;j!=rear;i++,j=(j+1)%cap){
