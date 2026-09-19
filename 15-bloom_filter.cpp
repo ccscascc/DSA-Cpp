@@ -4,7 +4,6 @@
 #include <variant>
 using namespace std;
 // 简易布隆过滤器
-// 什么玩意儿，抄抄代码得了😅
 class bloom_filter{
     private:
     vector<bool>bitmap;
