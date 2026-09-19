@@ -1,11 +1,11 @@
 #include <iostream>
 using namespace std;
-// Á´Ê½¶ÓÁÐ
-//»ùÓÚË«ÏòÑ­»·Á´±íÊµÏÖ»·ÐÎ¶ÓÁÐ
+// é“¾å¼é˜Ÿåˆ—
+//åŸºäºŽåŒå‘å¾ªçŽ¯é“¾è¡¨å®žçŽ°çŽ¯å½¢é˜Ÿåˆ—
 struct Node{
-    int data;//Êý¾ÝÓò
-    Node *next;//Ö¸ÏòÏÂÒ»¸ö½áµã
-    Node *pre;//Ö¸ÏòÉÏÒ»¸ö½áµã
+    int data;//æ•°æ®åŸŸ
+    Node *next;//æŒ‡å‘ä¸‹ä¸€ä¸ªç»“ç‚¹
+    Node *pre;//æŒ‡å‘ä¸Šä¸€ä¸ªç»“ç‚¹
     Node(int val=0){
         data = val;
         next = nullptr;
@@ -15,9 +15,9 @@ struct Node{
 };
 class Link_queue{
     private:
-    int cnt;//¶ÓÁÐ½áµã¸öÊý
-    Node *head;//Í·½Úµã(¶ÓÍ·)
-    Node *tail;//Î²½Úµã(¶ÓÎ²)
+    int cnt;//é˜Ÿåˆ—ç»“ç‚¹ä¸ªæ•°
+    Node *head;//å¤´èŠ‚ç‚¹(é˜Ÿå¤´)
+    Node *tail;//å°¾èŠ‚ç‚¹(é˜Ÿå°¾)
     public:
     Link_queue(){
         cnt == 0;
@@ -38,7 +38,7 @@ class Link_queue{
         head = nullptr;
     }
     public:
-    void push(int val){//Èë¶Ó
+    void push(int val){//å…¥é˜Ÿ
         Node *p = new Node(val);
         tail->next = p;
         p->pre = tail;
@@ -47,7 +47,7 @@ class Link_queue{
         tail = p;
         cnt ++;
     }
-    void pop(){//³ö¶Ó
+    void pop(){//å‡ºé˜Ÿ
         Node *p = head->next;
         head->next = p->next;
         p->next->pre = head;
@@ -55,17 +55,17 @@ class Link_queue{
         p = nullptr; 
         cnt--;
     }
-    int front(){//»ñÈ¡µÚÒ»¸ö½áµãÊý¾Ý
+    int front(){//èŽ·å–ç¬¬ä¸€ä¸ªç»“ç‚¹æ•°æ®
         if(head->next == head){
             throw;
         }
         return head->next->data;
     }
-    int back(){//»ñÈ¡×îºóÒ»¸ö½áµãÊý¾Ý
+    int back(){//èŽ·å–æœ€åŽä¸€ä¸ªç»“ç‚¹æ•°æ®
         if(head == tail)throw;
         return tail->data;
     }
-    bool empty(){//ÅÐ¿Õ
+    bool empty(){//åˆ¤ç©º
         return head->next==head;
     }
     int size(){
